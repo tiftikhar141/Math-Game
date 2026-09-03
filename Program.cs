@@ -4,17 +4,17 @@
     {
         static void Main(string[] args)
         {
-            menu();
+            GameMenu();
         }
-        static void menu()
+        static void GameMenu()
         {
             int menuOption;
             do
             {
-                Console.WriteLine("Choose your operation:\n1) Addition, 2) Subtraction, 3) Multiplication, 4) Division");
+                Console.WriteLine("Choose your operation:\n1) Addition, 2) Subtraction, 3) Multiplication, 4) Division, 5) Random, 6) Previous Results");
                 menuOption = Convert.ToInt32(Console.ReadLine());
 
-                if (menuOption < 1 || menuOption > 4)
+                if (menuOption < 1 || menuOption > 6)
                 {
                     Console.WriteLine("Inavlid option, please try again.");
                 }
@@ -23,37 +23,41 @@
 
             if (menuOption == 1)
             {
-                calculations(1);
+                Calculations(1);
             }
             if (menuOption == 2)
             {
-                calculations(2);
+                Calculations(2);
             }
             if (menuOption == 3)
             {
-                calculations(3);
+                Calculations(3);
             }
             if (menuOption == 4)
             {
-                calculations(4);
+                Calculations(4);
+            }
+            if (menuOption == 5) 
+            {
+                Calculations(5);
             }
 
         }
-        static void calculations(int operation)
+        static void Calculations(int operation)
         {
             var random = new Random();
             int number1, number2;
             int userAnswer;
             int correctAnswer = 0;
             int score = 0;
-            string operationSign = "";
+            string sign = "";
 
             for (int i = 0; i < 5; i++)
             {
                 do
                 {
-                    number1 = (int)random.NextInt64(0, 100);
-                    number2 = (int)random.NextInt64(1, 100); // start range at 1 to avoid divide by 0 error
+                    number1 = (int)random.NextInt64(1, 101);
+                    number2 = (int)random.NextInt64(1, 101); // start range at 1 to avoid divide by 0 error
                 } while (number1 % number2 != 0);
 
                 int additionAnswer = number1 + number2;
@@ -61,28 +65,37 @@
                 int multiplicationAnswer = number1 * number2;
                 int divisionAnswer = number1 / number2;
 
+                string[] operationSigns = [" + ", " - ", " x ", " ÷ "];
+                int[] randomAnswer = [additionAnswer, subtractionAnswer, multiplicationAnswer, divisionAnswer];
+                int randomIndex = (int)random.NextInt64(0, 4);
+
                 if (operation == 1)
                 {
-                    operationSign = " + ";
+                    sign = operationSigns[0];
                     correctAnswer = additionAnswer;
                 }
                 if (operation == 2)
                 {
-                    operationSign = " - ";
+                    sign = operationSigns[1];
                     correctAnswer = subtractionAnswer;
                 }
                 if (operation == 3)
                 {
-                    operationSign = " x ";
+                    sign = operationSigns[2];
                     correctAnswer = multiplicationAnswer;
                 }
                 if (operation == 4)
-                { 
-                    operationSign = " ÷ ";
+                {
+                    sign = operationSigns[3];
                     correctAnswer = divisionAnswer;
                 }
+                if (operation == 5)
+                {
+                    sign = operationSigns[randomIndex];
+                    correctAnswer = randomAnswer[randomIndex];
+                }
 
-                Console.WriteLine(number1 + operationSign + number2);
+                Console.WriteLine(number1 + sign + number2);
                 userAnswer = Convert.ToInt32(Console.ReadLine());
 
                 if (userAnswer == correctAnswer)
@@ -96,8 +109,8 @@
             }
 
             Console.WriteLine("Final Score: " + score + "/5");
+            GameMenu();
         }
-
         
     }
 }
