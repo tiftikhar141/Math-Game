@@ -4,7 +4,48 @@
     {
         static void Main(string[] args)
         {
-            menu();
+            //menu();
+            //calculations(1);
+
+            // print out 5 math questions
+            var random = new Random();
+
+            for (int i = 0; i < 5; i++)
+            {
+                int number1 = (int)random.NextInt64(0, 100);
+                int number2 = (int)random.NextInt64(0, 100);
+
+                int additionAnswer = number1 + number2;
+                int subtractionAnswer = number1 - number2;
+                int multiplicationAnswer = number1 * number2;
+                int divisionAnswer = number1 / number2;
+
+                int userAnswer;
+
+                Console.WriteLine(number1 + " + " + number2);
+                userAnswer = Convert.ToInt32(Console.ReadLine());
+
+                if (userAnswer == additionAnswer) {
+                    Console.WriteLine("correct");
+                } else {
+                    Console.WriteLine("wrong");
+                }
+
+            }
+            
+
+
+        }
+
+        static int calculations(int operation)
+        {
+            var random = new Random();
+            int number = (int)random.NextInt64(0, 100);
+
+
+
+            return 0;
+
         }
 
         static void menu()
