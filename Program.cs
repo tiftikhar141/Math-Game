@@ -4,6 +4,11 @@
     {
         static void Main(string[] args)
         {
+            menu();
+        }
+
+        static void menu()
+        {
             int menuOption;
             do
             {
@@ -17,11 +22,11 @@
 
             } while (menuOption < 1 || menuOption > 5);
 
-            if (menuOption == 1) 
+            if (menuOption == 1)
             {
                 Console.WriteLine("Addition");
             }
-            if (menuOption == 2) 
+            if (menuOption == 2)
             {
                 Console.WriteLine("Subtraction");
             }
@@ -37,9 +42,6 @@
             {
                 Console.WriteLine("Past Results");
             }
-
-
-
         }
     }
 }
