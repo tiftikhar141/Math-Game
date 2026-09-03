@@ -41,17 +41,20 @@
         }
         static void calculations(int operation)
         {
-
-            // print out 5 math questions
             var random = new Random();
+            int number1, number2;
             int userAnswer;
             int correctAnswer = 0;
-            string operationSign = ",";
+            int score = 0;
+            string operationSign = "";
 
             for (int i = 0; i < 5; i++)
             {
-                int number1 = (int)random.NextInt64(0, 100);
-                int number2 = (int)random.NextInt64(0, 100);
+                do
+                {
+                    number1 = (int)random.NextInt64(0, 100);
+                    number2 = (int)random.NextInt64(1, 100); // start range at 1 to avoid divide by 0 error
+                } while (number1 % number2 != 0);
 
                 int additionAnswer = number1 + number2;
                 int subtractionAnswer = number1 - number2;
@@ -60,22 +63,22 @@
 
                 if (operation == 1)
                 {
-                    operationSign = "+";
+                    operationSign = " + ";
                     correctAnswer = additionAnswer;
                 }
                 if (operation == 2)
                 {
-                    operationSign = "-";
+                    operationSign = " - ";
                     correctAnswer = subtractionAnswer;
                 }
                 if (operation == 3)
                 {
-                    operationSign = "x";
+                    operationSign = " x ";
                     correctAnswer = multiplicationAnswer;
                 }
                 if (operation == 4)
-                {
-                    operationSign = "÷";
+                { 
+                    operationSign = " ÷ ";
                     correctAnswer = divisionAnswer;
                 }
 
@@ -84,12 +87,15 @@
 
                 if (userAnswer == correctAnswer)
                 {
+                    score++;
                     Console.WriteLine("Correct!");
                 } else
                 {
-                    Console.WriteLine("Wrong");
+                    Console.WriteLine("Wrong, the correct answer was " + correctAnswer);
                 }
             }
+
+            Console.WriteLine("Final Score: " + score + "/5");
         }
 
         
