@@ -8,7 +8,7 @@
         }
         static void GameMenu()
         {
-            int menuOption;
+            int menuOption, numOfQuestions;
             do
             {
                 Console.WriteLine("Choose your operation:\n1) Addition, 2) Subtraction, 3) Multiplication, 4) Division, 5) Random, 6) Previous Results");
@@ -21,29 +21,32 @@
 
             } while (menuOption < 1 || menuOption > 5);
 
+            Console.WriteLine("How many questions? ");
+            numOfQuestions = Convert.ToInt32(Console.ReadLine());
+
             if (menuOption == 1)
             {
-                Calculations(1);
+                Calculations(1, numOfQuestions);
             }
             if (menuOption == 2)
             {
-                Calculations(2);
+                Calculations(2, numOfQuestions);
             }
             if (menuOption == 3)
             {
-                Calculations(3);
+                Calculations(3, numOfQuestions);
             }
             if (menuOption == 4)
             {
-                Calculations(4);
+                Calculations(4, numOfQuestions);
             }
             if (menuOption == 5) 
             {
-                Calculations(5);
+                Calculations(5, numOfQuestions);
             }
 
         }
-        static void Calculations(int operation)
+        static void Calculations(int operation, int numOfQuestions)
         {
             var random = new Random();
             int number1, number2;
@@ -52,7 +55,7 @@
             int score = 0;
             string sign = "";
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < numOfQuestions; i++)
             {
                 do
                 {
@@ -108,7 +111,7 @@
                 }
             }
 
-            Console.WriteLine("Final Score: " + score + "/5");
+            Console.WriteLine("Final Score: " + score + "/" + numOfQuestions);
             GameMenu();
         }
         
