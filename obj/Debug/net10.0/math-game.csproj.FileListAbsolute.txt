@@ -1,0 +1,14 @@
+C:\Users\tifti\source\repos\math-game\bin\Debug\net10.0\math-game.exe
+C:\Users\tifti\source\repos\math-game\bin\Debug\net10.0\math-game.deps.json
+C:\Users\tifti\source\repos\math-game\bin\Debug\net10.0\math-game.runtimeconfig.json
+C:\Users\tifti\source\repos\math-game\bin\Debug\net10.0\math-game.dll
+C:\Users\tifti\source\repos\math-game\bin\Debug\net10.0\math-game.pdb
+C:\Users\tifti\source\repos\math-game\obj\Debug\net10.0\math-game.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tifti\source\repos\math-game\obj\Debug\net10.0\math-game.AssemblyInfoInputs.cache
+C:\Users\tifti\source\repos\math-game\obj\Debug\net10.0\math-game.AssemblyInfo.cs
+C:\Users\tifti\source\repos\math-game\obj\Debug\net10.0\math-game.csproj.CoreCompileInputs.cache
+C:\Users\tifti\source\repos\math-game\obj\Debug\net10.0\math-game.dll
+C:\Users\tifti\source\repos\math-game\obj\Debug\net10.0\refint\math-game.dll
+C:\Users\tifti\source\repos\math-game\obj\Debug\net10.0\math-game.pdb
+C:\Users\tifti\source\repos\math-game\obj\Debug\net10.0\math-game.genruntimeconfig.cache
+C:\Users\tifti\source\repos\math-game\obj\Debug\net10.0\ref\math-game.dll
