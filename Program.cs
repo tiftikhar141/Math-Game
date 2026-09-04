@@ -24,31 +24,7 @@ namespace math_game
 
             } while (menuOption < 1 || menuOption > 6);
 
-            if (menuOption == 1)
-            {
-                Calculations(1);
-            }
-            if (menuOption == 2)
-            {
-                Calculations(2);
-            }
-            if (menuOption == 3)
-            {
-                Calculations(3);
-            }
-            if (menuOption == 4)
-            {
-                Calculations(4);
-            }
-            if (menuOption == 5) 
-            {
-                Calculations(5);
-            }
-            if (menuOption == 6)
-            {
-                Calculations(6);
-            }
-
+            Calculations(menuOption);
         }
         static void Calculations(int operation)
         {
