@@ -1,5 +1,5 @@
-﻿using System.Buffers;
-using System.Collections.Generic;
+﻿//using System.Buffers;
+//using System.Collections.Generic;
 
 namespace math_game
 {
@@ -45,7 +45,7 @@ namespace math_game
                 Calculations(5);
             }
             if (menuOption == 6)
-            {  
+            {
                 Calculations(6);
             }
 
@@ -59,102 +59,93 @@ namespace math_game
             int score = 0;
             string sign = "";
 
-            string currentResult = "";
             List<string> pastResults = new List<string>();
 
-            int numOfQuestions = 0;
+            int numOfQuestions;
+            Console.WriteLine("How many questions? ");
+            numOfQuestions = Convert.ToInt32(Console.ReadLine());
 
-            if (operation != 6) {
-                Console.WriteLine("How many questions? ");
-                numOfQuestions = Convert.ToInt32(Console.ReadLine());
-
-                for (int i = 0; i < numOfQuestions; i++)
+            for (int i = 0; i < numOfQuestions; i++)
+            {
+                do
                 {
-                    do
-                    {
-                        number1 = (int)random.NextInt64(1, 101);
-                        number2 = (int)random.NextInt64(1, 101); // start range at 1 to avoid divide by 0 error
-                    } while (number1 % number2 != 0);
+                    number1 = (int)random.NextInt64(1, 101);
+                    number2 = (int)random.NextInt64(1, 101); // start range at 1 to avoid divide by 0 error
+                } while (number1 % number2 != 0);
 
-                    int additionAnswer = number1 + number2;
-                    int subtractionAnswer = number1 - number2;
-                    int multiplicationAnswer = number1 * number2;
-                    int divisionAnswer = number1 / number2;
+                string[] operationSigns = [" + ", " - ", " x ", " ÷ "];
+                int[] answers = [number1 + number2, number1 - number2, number1 * number2, number1 / number2];
+                int randomIndex = (int)random.NextInt64(0, 4);
 
-                    string[] operationSigns = [" + ", " - ", " x ", " ÷ "];
-
-                    int[] randomAnswer = [additionAnswer, subtractionAnswer, multiplicationAnswer, divisionAnswer];
-                    int randomIndex = (int)random.NextInt64(0, 4);
-
-                    if (operation == 1)
-                    {
-                        sign = operationSigns[0];
-                        correctAnswer = additionAnswer;
-                    }
-                    if (operation == 2)
-                    {
-                        sign = operationSigns[1];
-                        correctAnswer = subtractionAnswer;
-                    }
-                    if (operation == 3)
-                    {
-                        sign = operationSigns[2];
-                        correctAnswer = multiplicationAnswer;
-                    }
-                    if (operation == 4)
-                    {
-                        sign = operationSigns[3];
-                        correctAnswer = divisionAnswer;
-                    }
-                    if (operation == 5)
-                    {
-                        sign = operationSigns[randomIndex];
-                        correctAnswer = randomAnswer[randomIndex];
-                    }
-
-                    Console.WriteLine(number1 + sign + number2); // print question
-                    userAnswer = Convert.ToInt32(Console.ReadLine()); // get answer
-
-                    if (userAnswer == correctAnswer)
-                    {
-                        score++;
-                        Console.WriteLine("Correct!");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Wrong, the correct answer was " + correctAnswer);
-                    }
-
-                    currentResult = number1 + sign + number2 + "\nYour Answer: " + userAnswer + "\nCorrect Answer: " + correctAnswer; // store q & a info inside string
-                    pastResults.Add(currentResult); // add q & a info of current question to past results list
+                if (operation == 1)
+                {
+                    sign = operationSigns[0];
+                    correctAnswer = answers[0];
                 }
+                if (operation == 2)
+                {
+                    sign = operationSigns[1];
+                    correctAnswer = answers[1];
+                }
+                if (operation == 3)
+                {
+                    sign = operationSigns[2];
+                    correctAnswer = answers[2];
+                }
+                if (operation == 4)
+                {
+                    sign = operationSigns[3];
+                    correctAnswer = answers[3];
+                }
+                if (operation == 5)
+                {
+                    sign = operationSigns[randomIndex];
+                    correctAnswer = answers[randomIndex];
+                }
+
+                string question = number1 + sign + number2;
+
+                Console.WriteLine(question); // print question
+                userAnswer = Convert.ToInt32(Console.ReadLine()); // get answer
+
+                string questionResult;
+
+                if (userAnswer == correctAnswer)
+                {
+                    score++;
+                    questionResult = "Correct!";
+                    Console.WriteLine(questionResult);
+                }
+                else
+                {
+                    questionResult = "Incorrect! The correct answer is " + correctAnswer;
+                    Console.WriteLine(questionResult);
+                }
+
+                // add data into list
+                pastResults.Add(question);
+                pastResults.Add(Convert.ToString(userAnswer));
+                pastResults.Add(questionResult);
             }
 
-            //foreach (string result in pastResults)
-            //{
-            //    Console.WriteLine(result);
-            //}
+
+            Console.WriteLine("PAST RESULTS: \n===============================");
+            foreach (string result in pastResults)
+            {
+                Console.WriteLine(result);
+            }
 
             Console.WriteLine("length of past results list: " + pastResults.Count); // count is being saved at the end, but goes back to 0 when doing a new operation
 
-            if (operation == 6)
-            {
-                //if (pastResults.Count == 0)
-                //{
-                //    Console.WriteLine("Past Results do not exist");
-                //} else
-                //{
-                //    foreach (string result in pastResults)
-                //    {
-                //        Console.WriteLine(result);
-                //    }
-                //}
-                Console.WriteLine("length of past results list: " + pastResults.Count); 
-
-            }
+            /* 
+             We have a working list
+             at the end of each round (after all questions are updated) list is up to date with all q & a data of the previous questions
+             problem: the list goes back to being empty once a new operation starts
+             what should happen: list should stay up to date with question data even after new operation is selected
+             */
 
             Console.WriteLine("Final Score: " + score + "/" + numOfQuestions);
-            GameMenu();
+            //GameMenu();
         }
         
     }
