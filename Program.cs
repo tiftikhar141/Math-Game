@@ -23,7 +23,7 @@ namespace math_game
                 }
 
             } while (menuOption < 1 || menuOption > 6);
-            
+
             Calculations(menuOption);
         }
         static void Calculations(int operation)
@@ -83,7 +83,7 @@ namespace math_game
                         correctAnswer = answers[randomIndex];
                     }
 
-                    string question = number1 + sign + number2;
+                    string question = number1 + sign + number2 + " = ?";
 
                     Console.WriteLine(question); // print question
                     userAnswer = Convert.ToInt32(Console.ReadLine()); // get answer
@@ -120,15 +120,11 @@ namespace math_game
             if (pastResults.Count > 0)
             {
                 Console.WriteLine("PAST RESULTS:\n==============================================");
-                foreach (var pastResult in pastResults)
+                foreach (string pastResult in pastResults)
                 {
                     Console.WriteLine(pastResult);
                 }
-            } else
-            {
-                Console.WriteLine("No Past Results");
-            }
-
+            } 
         }
     }
 }
