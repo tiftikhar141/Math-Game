@@ -2,6 +2,8 @@
 {
     internal class Program
     {
+        static List<string> pastResults = new();
+
         static void Main(string[] args)
         {
             GameMenu();
@@ -12,16 +14,30 @@
             int numOfQuestions;
             do
             {
-                Console.WriteLine("Choose your operation:\n1) Addition, 2) Subtraction, 3) Multiplication, 4) Division, 5) Random, 6) Previous Results");
+                Console.WriteLine("Choose your operation:\n1) Addition, 2) Subtraction, 3) Multiplication, 4) Division, 5) Random, 6) Previous Results\n");
                 menuOption = Convert.ToInt32(Console.ReadLine());
+
+                if (menuOption < 1 || menuOption > 6)
+                {
+                    Console.WriteLine("Invalid Operation! Try Again\n");
+                }
             } while (menuOption < 1 || menuOption > 6);
 
             if (menuOption == 6)
             {
-                DisplayResults();
+                Console.WriteLine("No Past Results Currently\n");
+                if (pastResults.Count > 0)
+                {
+                    Console.WriteLine("PAST RESULTS:\n==============================================");
+                    foreach (string pastResult in pastResults)
+                    {
+                        Console.WriteLine(pastResult);
+                    }
+                }
+                GameMenu();
             }
 
-            Console.WriteLine("How many questions? ");
+            Console.WriteLine("How many questions?\n");
             numOfQuestions = Convert.ToInt32(Console.ReadLine());
 
             Calculations(menuOption, numOfQuestions);
@@ -32,13 +48,6 @@
             int userAnswer;
             int correctAnswer = 0;
             int score = 0;
-            string sign = "";
-            string questionResult;
-            string finalResult;
-
-            string[] operationSigns = [" + ", " - ", " x ", " ÷ "];
-            
-            List<string> pastResults = new();
             
             for (int i = 0; i < numOfQuestions; i++)
             {
@@ -48,6 +57,8 @@
                     number2 = Random.Shared.Next(1, 101); // start range at 1 to avoid divide by 0 error
                 } while (number1 % number2 != 0);
 
+                string sign = "";
+                string[] operationSigns = [" + ", " - ", " x ", " ÷ "];
                 int[] answers = [number1 + number2, number1 - number2, number1 * number2, number1 / number2];
 
                 if (operation == 1)
@@ -78,6 +89,8 @@
                 }
 
                 string question = number1 + sign + number2 + " = ?";
+                string questionResult;
+                string finalResult;
 
                 Console.WriteLine(question); 
                 userAnswer = Convert.ToInt32(Console.ReadLine()); 
@@ -85,16 +98,16 @@
                 if (userAnswer == correctAnswer)
                 {
                     score++;
-                    questionResult = "Correct!";
+                    questionResult = "Correct!\n";
                     Console.WriteLine(questionResult);
                 }
                 else
                 {
-                    questionResult = "Incorrect! The correct answer is " + correctAnswer;
+                    questionResult = "Incorrect! The correct answer is " + correctAnswer + "\n";
                     Console.WriteLine(questionResult);
                 }
 
-                finalResult = "Final Score: " + score + "/" + numOfQuestions;
+                finalResult = "Final Score: " + score + "/" + numOfQuestions + "\n";
 
                 // add data into list
                 pastResults.Add(question);
@@ -106,24 +119,9 @@
                 {
                     pastResults.Add(finalResult);
                     Console.WriteLine(finalResult);
-                    GameMenu();
                 }
             }
-            
 
-            if (pastResults.Count > 0)
-            {
-                Console.WriteLine("PAST RESULTS:\n==============================================");
-                foreach (string pastResult in pastResults)
-                {
-                    Console.WriteLine(pastResult);
-                }
-            } 
-        }
-
-        static void DisplayResults()
-        {
-            Console.WriteLine("Results LOL");
             GameMenu();
         }
     }
