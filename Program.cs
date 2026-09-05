@@ -25,14 +25,16 @@
 
             if (menuOption == 6)
             {
-                Console.WriteLine("No Past Results Currently\n");
                 if (pastResults.Count > 0)
                 {
-                    Console.WriteLine("PAST RESULTS:\n==============================================");
-                    foreach (string pastResult in pastResults)
+                    for (int i = 0; i < pastResults.Count; i++)
                     {
-                        Console.WriteLine(pastResult);
+                        Console.WriteLine(pastResults[i]);
                     }
+                } 
+                else
+                {
+                    Console.WriteLine("No Past Results Currently\n");
                 }
                 GameMenu();
             }
