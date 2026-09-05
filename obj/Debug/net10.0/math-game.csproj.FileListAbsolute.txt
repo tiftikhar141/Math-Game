@@ -12,3 +12,4 @@ C:\Users\tifti\source\repos\math-game\obj\Debug\net10.0\refint\math-game.dll
 C:\Users\tifti\source\repos\math-game\obj\Debug\net10.0\math-game.pdb
 C:\Users\tifti\source\repos\math-game\obj\Debug\net10.0\math-game.genruntimeconfig.cache
 C:\Users\tifti\source\repos\math-game\obj\Debug\net10.0\ref\math-game.dll
+C:\Users\tifti\source\repos\math-game\obj\Debug\net10.0\math-game.sourcelink.json
